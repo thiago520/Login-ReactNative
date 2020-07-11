@@ -39,14 +39,14 @@ const inicioStack = createStackNavigator({
         screen: Inicio,
         navigationOptions: {
             title: 'Inicio',
-            header: null
+            headerShown: false
           },
     },
     Entrar: {
         screen: Entrar,
         navigationOptions: {
             title: 'Inicio',
-            header: null 
+            headerShown: false
           },
     },
     Mensagens: Mensagens

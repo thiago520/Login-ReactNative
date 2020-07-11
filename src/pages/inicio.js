@@ -2,13 +2,34 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
+import {AsyncStorage} from 'react-native';
+import {NavigationEvents} from 'react-navigation';
+
 export default class Inicio extends Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            nome: '',
+        }
+    }
+
+    recuperarInformacaoUsuario = async () => {
+        const nome = await AsyncStorage.getItem('@usuario:key');
+
+        if ( nome != null ) {
+            this.setState({
+                nome: nome
+            })
+        }
+    }
+
     render(){
         return(
             <View>
+                <NavigationEvents onDidFocus={()=> this.recuperarInformacaoUsuario()} />
                 <View style={styles.view_titulo}>
-                    <Text style={styles.titulo}>É um ótimo dia para</Text>
-                    <Text style={styles.titulo}>um café</Text>
+                    <Text style={styles.titulo}>Olá {this.state.nome}</Text>
                 </View>
 
                 <View style={styles.menu_inicio}>
